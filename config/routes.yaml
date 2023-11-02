@@ -1,0 +1,9 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+property_page:
+    path: /property
+    controller: App\Controller\PropertyController::show
