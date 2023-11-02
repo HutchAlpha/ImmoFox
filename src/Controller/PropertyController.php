@@ -1,17 +1,19 @@
 <?php
+
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Property; // Assurez-vous d'importer la classe Property
-use Doctrine\ORM\EntityManagerInterface; // Import de l'EntityManager
+use App\Entity\Property;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 class PropertyController extends AbstractController
 {
-    private $entityManager;
+    private $entityManager; 
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager) 
     {
         $this->entityManager = $entityManager;
     }
@@ -21,24 +23,22 @@ class PropertyController extends AbstractController
      */
     public function show(): Response
     {
-        $property = new Property();
-        $property->setTitle('Mon premier bien')
-            ->setDescription('Ceci est un logement à vendre')
-            ->setPrice(100000)
-            ->setRooms(6)
-            ->setBedrooms(3)
-            ->setSurface(60)
-            ->setFloor(1)
-            ->setHeat(1)
-            ->setCity('Cherbourg-En-Cotentin')
-            ->setAddress('8 rue des Pommiers')
-            ->setPostalCode(50100);
-            $property->setSold(false);
-
-
-        $this->entityManager->persist($property);
-        $this->entityManager->flush();
-
-        return $this->render('pages/property.html.twig');
+        // Récupérer une entité Property existante en fonction de son ID (par exemple, ID 1)
+        $existingProperty = $this->entityManager->getRepository(Property::class)->find(1);
+        $properties = $this->entityManager->getRepository(Property::class)->findAll();
+    
+        if (!$existingProperty) {
+            // Si l'entité avec ID 1 n'existe pas, créez une nouvelle
+            $property = new Property();
+           
+        } else {
+            // Si l'entité existe, utilisez-la
+            $property = $existingProperty;
+        }
+    
+        return $this->render('pages/property.html.twig', [
+            'property' => $property,
+            'properties' => $properties,
+        ]);
     }
-}
+}    

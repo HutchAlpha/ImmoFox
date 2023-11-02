@@ -16,6 +16,7 @@ class Property
         2 => 'Fioul'
     ];
 
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -198,7 +199,7 @@ class Property
 
     public function setPostalCode(string $postal_code): static
     {
-        $this->postal_code = $postal_code;
+        $this->postalcode = $postal_code;
 
         return $this;
     }
@@ -222,7 +223,7 @@ class Property
 
     public function setCreatedAt(\DateTimeInterface $created_at): static
     {
-        $this->created_at = $created_at;
+        $this->createdat = $created_at;
 
         return $this;
     }
