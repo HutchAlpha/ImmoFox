@@ -81,9 +81,9 @@ class Property
     }
 
     public function getSlug(): ?string
-{
-    return (new Slugify())->slugify($this->title);
-}
+    {
+        return (new Slugify())->slugify($this->title);
+    }
 
 
     public function getDescription(): ?string
@@ -152,16 +152,22 @@ class Property
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?string
     {
-        return $this->price;
+    if ($this->price === null) {
+        return null;
+    }
+    
+    return number_format($this->price, 0, '.', ' ');
     }
 
-    public function setPrice(int $price): static
+public function setPrice(string $price): static
     {
-        $this->price = $price;
+    // Nettoyez le prix en supprimant les espaces (s'il y en a) avant de le stocker dans la base de données.
+    $price = str_replace(' ', '', $price);
+    $this->price = (int)$price;
 
-        return $this;
+    return $this;
     }
 
     public function getHeat(): ?int
@@ -174,6 +180,11 @@ class Property
         $this->heat = $heat;
 
         return $this;
+    }
+
+    public function getHeatType(): string
+    {
+        return self::Heat[$this->heat];
     }
 
     public function getCity(): ?string

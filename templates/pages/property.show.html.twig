@@ -9,7 +9,7 @@
             <div class="col-md-8">
                 <h1>{{ property.title }}</h1>
                 <p>{{ property.rooms }} pièces - {{ property.surface }} m²</p>
-                <div class="text-primary" style="font-size: 4rem; font-weight: bold;">Prix : {{ property.price }}€</div>
+                <div class="text-primary" style="font-size: 4rem; font-weight: bold;">Prix : {{ property.price }} €</div>
                 <a href="#" class="btn btn-primary">Contacter l'Agence</a>
             </div>
             <div class="col-md-4">
@@ -30,15 +30,15 @@
                 <td>{{ property.surface }}m²</td>
             </tr>
             <tr>
-                <td>Pièces</td>
+                <td>Pièce(s)</td>
                 <td>{{ property.rooms }}</td>
             </tr>
             <tr>
-                <td>Chambres</td>
+                <td>Chambre(s)</td>
                 <td>{{ property.bedrooms }}</td>
             </tr>
             <tr>
-                <td>Étage</td>
+                <td>Étage(s)</td>
                 <td>{{ property.floor }}</td>
             </tr>
             <tr>
@@ -56,9 +56,10 @@
             </tr>
             <tr>
                 <td>Date de mise en ligne</td>
-                <td>{{ property.createdat|date('H:i:s') }} le {{ property.createdat|date('d-m-Y') }}</td>
+                <td>{{ property.createdat|date('H:i:s') }} <br /> {{ property.createdat|date('d-m-Y') }}</td>
             </tr>
         </table>
+        <br />
         <a href="{{ path('property_page') }}" class="btn btn-primary">Retour à la liste des biens</a>
     </div>
 </div>
