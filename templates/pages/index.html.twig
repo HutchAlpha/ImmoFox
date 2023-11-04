@@ -1,28 +1,68 @@
 {% extends('base.html.twig') %}
 
-    {% block body %}
-    <strong> vous pouvez accéder a votre profil ici :</strong>
-
-    <div class="row">
-        <div class="col-m6">
-            <a class="btn btn-primary">Mon profil</a>
-        </div>
-    </div>
-<div class="jumbotron text-center">
-    <h1>Bienvenue!</h1>
-    <h1>Découvrer le fonctionnement de notre site web ! </h1>
-    <h2>Vous pouvez-vous connecter ou vous inscrire!</h2>
-</div>
-    <div class="row">
-        <a class="btn btn-primary">Se connecter</a>
-        <a class="btn btn-primary">S'inscrire</a>
+{% block body %}
+    <div class="jumbotron text-center">
+        <h1>Bienvenue!</h1>
+        <h1>Découvrer le fonctionnement de notre site web ! </h1>
+        <h2>Vous pouvez-vous connecter ou vous inscrire!</h2>
     </div>
 
     <br /> <br /> <br />
 
-    <div class="menu-centre-1">
-        <p>Ceci est un test, vous aimez bien le chocolat chaud ?</p>
-    </div>
+  <div class="container">
+  <h2>Les derniers biens</h2>
+    {% for singleProperty in properties %}
+     <div class="col-3">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">
+             <a href="{{ path('property.show', {id: singleProperty.id, slug: singleProperty.slug}) }}">{{ singleProperty.title }}</a>
+
+
+
+            </h5>
+                <p class="card-text">{{singleProperty.city}} ({{singleProperty.postalcode}})</p>
+                <div class="text-primary">{{singleProperty.price}} €</div>
+            </div>
+        </div>
+     </div>
+
+    {% endfor %}
+
+     <br /> <br />
+
+     <h1>Ajouter une propriété</h1>
+     
+     <br />
     
+     <form action="/ajouter-propriete" method="post">
+        <label for="title">Titre :</label>
+        <input type="text" name="title" id="title" required><br>
+
+        <label for="description">Description :</label>
+        <textarea name="description" id="description" rows="4" required></textarea><br>
+
+        <label for="price">Prix :</label>
+        <input type="number" name="price" id="price" required><br>
+
+        <label for="rooms">Nombre de pièces :</label>
+        <input type="number" name="rooms" id="rooms" required><br>
+
+        <label for="bedrooms">Nombre de chambres :</label>
+        <input type="number" name="bedrooms" id="bedrooms" required><br>
+
+        <label for="surface">Superficie (m²) :</label>
+        <input type="number" name="surface" id="surface" required><br>
+
+        <label for="postal_code">Code postal :</label>
+        <input type="text" name="postal_code" id="postal_code" required><br>
+
+        <label for="city">ville :</label>
+        <input type="text" name="city" id="city" required><br>
+
+        <input type="submit" value="Ajouter la propriété">
+    </form>
+
+</div>
 
 {% endblock %}

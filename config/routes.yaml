@@ -6,4 +6,10 @@ controllers:
 
 property_page:
     path: /property
+    controller: App\Controller\PropertyController::index
+
+
+property.show:
+    path: '/properties/{id}'
     controller: App\Controller\PropertyController::show
+

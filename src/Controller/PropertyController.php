@@ -7,13 +7,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Property;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PropertyController extends AbstractController
 {
-    private $entityManager; 
+    private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager) 
+    public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -21,24 +22,27 @@ class PropertyController extends AbstractController
     /**
      * @Route("/properties", name="property.index")
      */
-    public function show(): Response
+    public function index(): Response
     {
-        // Récupérer une entité Property existante en fonction de son ID (par exemple, ID 1)
-        $existingProperty = $this->entityManager->getRepository(Property::class)->find(1);
         $properties = $this->entityManager->getRepository(Property::class)->findAll();
-    
-        if (!$existingProperty) {
-            // Si l'entité avec ID 1 n'existe pas, créez une nouvelle
-            $property = new Property();
-           
-        } else {
-            // Si l'entité existe, utilisez-la
-            $property = $existingProperty;
-        }
-    
+
         return $this->render('pages/property.html.twig', [
-            'property' => $property,
             'properties' => $properties,
         ]);
     }
-}    
+
+   /**
+ * @Route("/property/{id}", name="property.show")
+ * @ParamConverter("property", class="App\Entity\Property")
+ */
+public function show(Property $property): Response
+{
+    if (!$property) {
+        throw $this->createNotFoundException('Propriété non trouvée');
+    }
+
+    return $this->render('pages/property.show.html.twig', [
+        'property' => $property,
+    ]);
+}
+}

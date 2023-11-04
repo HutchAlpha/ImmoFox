@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\PropertyRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
+
 
 #[ORM\Entity(repositoryClass: PropertyRepository::class)]
 class Property
@@ -78,6 +80,12 @@ class Property
         return $this;
     }
 
+    public function getSlug(): ?string
+{
+    return (new Slugify())->slugify($this->title);
+}
+
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -94,6 +102,12 @@ class Property
     {
         return $this->surface;
     }
+    public function setSurface(int $surface): static
+    {
+        $this->surface = $surface;
+
+        return $this;
+    }
 
     public function __construct()
     {
@@ -101,12 +115,6 @@ class Property
             
     }
 
-    public function setSurface(int $surface): static
-    {
-        $this->surface = $surface;
-
-        return $this;
-    }
 
     public function getRooms(): ?int
     {
