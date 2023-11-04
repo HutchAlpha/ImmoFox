@@ -3,17 +3,63 @@
 {% block title %}Détails du bien immobilier{% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1>{{ property.title }}</h1>
-    <p>{{ property.description }}</p>
-    <p>Prix : {{ property.price }}€</p>
-    <p>Nombre de pièces : {{ property.rooms }}</p>
-    <p>Nombre de chambres : {{ property.bedrooms }}</p>
-    <p>Superficie : {{ property.surface }} m²</p>
-    <p>Code postal : {{ property.postalcode }}</p>
-    <p>Date de mise en ligne : {{ property.createdat|date('H:i:s') }} le {{ property.createdat|date('d-m-Y') }}</p>
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>{{ property.title }}</h1>
+                <p>{{ property.rooms }} pièces - {{ property.surface }} m²</p>
+                <div class="text-primary" style="font-size: 4rem; font-weight: bold;">Prix : {{ property.price }}€</div>
+                <a href="#" class="btn btn-primary">Contacter l'Agence</a>
+            </div>
+            <div class="col-md-4">
+                <!-- Contenu de la colonne de droite (peut être vide pour l'instant) -->
+            </div>
+        </div>
+    </div>
+</div>
 
-    <a href="{{ path('property_page') }}" class="btn btn-primary">Retour à la liste des biens</a>
+<p>{{ property.description | nl2br }}</p>
+
+<div class="row">
+    <div class="col-md-8">
+        <h2>Caractéristiques</h2>
+        <table class="table table-striped">
+            <tr>
+                <td>Surface Habitable</td>
+                <td>{{ property.surface }}m²</td>
+            </tr>
+            <tr>
+                <td>Pièces</td>
+                <td>{{ property.rooms }}</td>
+            </tr>
+            <tr>
+                <td>Chambres</td>
+                <td>{{ property.bedrooms }}</td>
+            </tr>
+            <tr>
+                <td>Étage</td>
+                <td>{{ property.floor }}</td>
+            </tr>
+            <tr>
+                <td>Chauffage</td>
+                <td>{{ property.heatType }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h2>Spécificités</h2>
+        <table class="table table-striped">
+            <tr>
+                <td>Code Postal</td>
+                <td>{{ property.postalcode }}</td>
+            </tr>
+            <tr>
+                <td>Date de mise en ligne</td>
+                <td>{{ property.createdat|date('H:i:s') }} le {{ property.createdat|date('d-m-Y') }}</td>
+            </tr>
+        </table>
+        <a href="{{ path('property_page') }}" class="btn btn-primary">Retour à la liste des biens</a>
+    </div>
 </div>
 {% endblock %}
-
