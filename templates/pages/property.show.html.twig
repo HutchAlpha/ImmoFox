@@ -1,10 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Property Page{% endblock %}
+{% block title %}Détails du bien immobilier{% endblock %}
 
 {% block body %}
-<div class="jumbotron text-center">
-    <h1>Test</h1>
+<div class="container">
+    <h1>{{ property.title }}</h1>
+    <p>{{ property.description }}</p>
+    <p>Prix : {{ property.price }}€</p>
+    <p>Nombre de pièces : {{ property.rooms }}</p>
+    <p>Nombre de chambres : {{ property.bedrooms }}</p>
+    <p>Superficie : {{ property.surface }} m²</p>
+    <p>Code postal : {{ property.postalcode }}</p>
+    <p>Date de mise en ligne : {{ property.createdat|date('H:i:s') }} le {{ property.createdat|date('d-m-Y') }}</p>
+
+    <a href="{{ path('property_page') }}" class="btn btn-primary">Retour à la liste des biens</a>
 </div>
-  
 {% endblock %}
+
