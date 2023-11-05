@@ -26,41 +26,6 @@
      </div>
 
     {% endfor %}
-
-     <br /> <br />
-
-     <h1>Ajouter une propriété</h1>
-     
-     <br />
-    
-     <form action="/ajouter-propriete" method="post">
-        <label for="title">Titre :</label>
-        <input type="text" name="title" id="title" required><br>
-
-        <label for="description">Description :</label>
-        <textarea name="description" id="description" rows="4" required></textarea><br>
-
-        <label for="price">Prix :</label>
-        <input type="number" name="price" id="price" required><br>
-
-        <label for="rooms">Nombre de pièces :</label>
-        <input type="number" name="rooms" id="rooms" required><br>
-
-        <label for="bedrooms">Nombre de chambres :</label>
-        <input type="number" name="bedrooms" id="bedrooms" required><br>
-
-        <label for="surface">Superficie (m²) :</label>
-        <input type="number" name="surface" id="surface" required><br>
-
-        <label for="postal_code">Code postal :</label>
-        <input type="text" name="postal_code" id="postal_code" required><br>
-
-        <label for="city">ville :</label>
-        <input type="text" name="city" id="city" required><br>
-
-        <input type="submit" value="Ajouter la propriété">
-    </form>
-
 </div>
 
 {% endblock %}
