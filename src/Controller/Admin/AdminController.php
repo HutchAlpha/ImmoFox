@@ -8,9 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\PropertyType;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Response;
 use Doctrine\ORM\EntityManagerInterface;
 
+use function PHPUnit\Framework\returnSelf;
 
 class AdminController extends AbstractController
 {
@@ -74,5 +75,15 @@ class AdminController extends AbstractController
         'property' => $property,
         'form' => $form->createView()
         ]);
+    }
+    /**
+     * @Route("/admin/{id}", name="admin_delete", methods={"DELETE"})
+     */
+
+    public function delete(Property $property)
+    {
+        $this->em->remove($property);
+        $this->em->flush();
+        return $this->redirectToRoute('admin_index');
     }
 }

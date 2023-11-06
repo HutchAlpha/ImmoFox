@@ -38,3 +38,8 @@ admin_new:
     defaults:
         _controller: 'App\Controller\Admin\AdminController::new'
     methods: ['GET', 'POST']
+
+admin_delete:
+    path: /admin/delete/{id}
+    controller: 'App\Controller\Admin\AdminController::delete'
+    methods: [DELETE, POST]
