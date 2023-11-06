@@ -45,7 +45,8 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             $this->em->persist($property);
-            $this->em->flush(); 
+            $this->em->flush();
+            $this->addFlash('success','Bien créer avec succès');
             return $this->redirectToRoute('admin_index'); 
         }
 
@@ -69,6 +70,7 @@ class AdminController extends AbstractController
         if ($form->isSubmitted() && $form->isValid())
         {
             $this->em->flush(); 
+            $this->addFlash('success','Bien modifié avec succès');
             return $this->redirectToRoute('admin_index'); 
         }
         return $this->render('admin/edit.html.twig', [
@@ -84,6 +86,7 @@ class AdminController extends AbstractController
     {
         $this->em->remove($property);
         $this->em->flush();
+        $this->addFlash('success','Bien supprimé avec succès');
         return $this->redirectToRoute('admin_index');
     }
 }
