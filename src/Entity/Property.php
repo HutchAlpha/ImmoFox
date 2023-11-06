@@ -152,23 +152,19 @@ class Property
         return $this;
     }
 
-    public function getPrice(): ?string
+    public function getPrice(): ?int
     {
-    if ($this->price === null) {
-        return null;
+        return $this->price;
     }
     
-    return number_format($this->price, 0, '.', ' ');
-    }
-
-public function setPrice(string $price): static
+    public function setPrice(int $price): static
     {
-    // Nettoyez le prix en supprimant les espaces (s'il y en a) avant de le stocker dans la base de données.
-    $price = str_replace(' ', '', $price);
-    $this->price = (int)$price;
-
-    return $this;
+        $this->price = $price;
+    
+        return $this;
     }
+    
+    
 
     public function getHeat(): ?int
     {
@@ -218,7 +214,7 @@ public function setPrice(string $price): static
 
     public function setPostalCode(string $postal_code): static
     {
-        $this->postalcode = $postal_code;
+        $this->postal_code = $postal_code;
 
         return $this;
     }

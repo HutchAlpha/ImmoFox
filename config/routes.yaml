@@ -27,8 +27,14 @@ admin_index:
 
 admin_edit:
     path: /admin/{id}
-    methods: ['GET']
+    methods: ['GET', 'POST']
     defaults:
         _controller: 'App\Controller\Admin\AdminController::edit'
     requirements:
         id: \d+
+
+admin_new:
+    path: '/admin/create/'
+    defaults:
+        _controller: 'App\Controller\Admin\AdminController::new'
+    methods: ['GET', 'POST']

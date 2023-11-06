@@ -23,10 +23,13 @@
           <td>{{property.id}} - {{property.title}} - {{property.city}}</td>
           <td><a href="{{ path('admin_edit', {id: property.id}) }}" class="btn btn-secondary">Éditer</a></td>
       </tr>
+    {% endfor %}
+    </thead>
     </tbody>
   </table>
-
-    {% endfor %}
+<div class="text-right">
+<a href="{{ path('admin_new')}}" class="btn btn-primary">Créer un bien</a>
+</div>
 </div>
 
 {% endblock %}
