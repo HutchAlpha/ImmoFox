@@ -27,8 +27,8 @@
           <td>{{property.id}} - {{property.title}} - {{property.city}}</td>
           <td><a href="{{ path('admin_edit', {id: property.id}) }}" class="btn btn-secondary">Éditer</a>
           <form method="post" action="{{ path('admin_delete', {id: property.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes-vous vraiment sûr ?')">
-          <input type="hidden" name="_method" value="DELETE">
-          <button class="btn btn-danger">Supprimer</button>
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn btn-danger">Supprimer</button>
           </form>
           </td>
       </tr>

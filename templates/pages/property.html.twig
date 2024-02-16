@@ -2,24 +2,24 @@
 
 {% block title %}Property Page{% endblock %}
 
-{% block body %}
-<div class="jumbotron text-center">
-    <h1>Les Biens à acheter</h1>
-</div>
-    <br /><br />
+    {% block body %}
+        <div class="jumbotron text-center">
+            <h1>Les Biens à acheter</h1>
+        </div>
+        
+        <br /><br />
 
-    {% for singleProperty in properties %}
-    
-    <h1>{{ singleProperty.title }}</h1>
-    <p>{{ singleProperty.description }}</p>
-    <p>Prix : {{ singleProperty.price }}€</p>
-    <p>Nombre de pièces : {{ singleProperty.rooms }}</p>
-    <p>Nombre de chambres : {{ singleProperty.bedrooms }}</p>
-    <p>Superficie : {{ singleProperty.surface }} m²</p>
-    <p>Code postal : {{ singleProperty.postalcode()}}</p>
-    <p>Date de mise en ligne : {{ singleProperty.createdat|date('H:i:s') }} le {{ singleProperty.createdat|date('d-m-Y ') }}</p>
+        {% for singleProperty in properties %}
+        
+        <h1>{{ singleProperty.title }}</h1>
+        <p>{{ singleProperty.description }}</p>
+        <p>Prix : {{ singleProperty.price }}€</p>
+        <p>Nombre de pièces : {{ singleProperty.rooms }}</p>
+        <p>Nombre de chambres : {{ singleProperty.bedrooms }}</p>
+        <p>Superficie : {{ singleProperty.surface }} m²</p>
+        <p>Code postal : {{ singleProperty.postalcode}}</p>
+        <p>Date de mise en ligne : {{ singleProperty.createdat|date('H:i:s') }} le {{ singleProperty.createdat|date('d-m-Y ') }}</p>
 
-    
-{% endfor %}
+    {% endfor %}
 
 {% endblock %}
